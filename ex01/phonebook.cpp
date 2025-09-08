@@ -2,44 +2,54 @@
 #include "./phonebook.hpp"
 #include <string.h>
 
-void PhoneBook::add_contact(Contact contact)
+void Contact::fill_contact()
 {
-    if (contact_number == 8)
-    {
-        std::cout << "The phonebook is full, if you wish to enter a new contact, the last one will be erased."
-        "Please, enter the name of the contact: " << std::endl;
-
-        std::cin >> contact.name;
-        std::cout << "Please, enter the phone number for " << contact.name << std::endl;
-        std::cin >> contact.phone_number;
-
-        contact[7] = contact;
-    }
-
-    std::cout << "Please, enter the name of the contact: " << contact.name << std::endl;
+    std::cout << "First name: " << std::endl;
+    std::getline(std::cin, first_name);
+    std::cout << "Last name: " << std::endl;
+    std::getline(std::cin, last_name);
+    std::cout << "Nickname: " << std::endl;
+    std::getline(std::cin, nickname);
+    std::cout << "Tell me your darkest secret: " << std::endl;
+    std::getline(std::cin, darkest_secret);
+    std::cout << "Phone number: " << std::endl;
+    std::getline(std::cin, phone_number);
 }
+
+//takes a contact object and inserts it into the array
+void PhoneBook::add_contact()
+{
+    Contact c;
+    c.fill_contact();
+    
+    if (contact_number == 8)
+        contacts[0] = c;
+    else
+    {
+        contacts[contact_number] = c;
+        contact_number++;
+    }
+}
+
+PhoneBook::PhoneBook()
+{
+    contact_number = 0;
+}
+
 int main()
 {
     PhoneBook phonebook;
     Contact contact;
+    std::string command;
 
-    char buffer[6];
-    std::cout << "Please, enter <ADD>, <SEARCH> or <EXIT>" << std::endl;
-    std::cin >> buffer;
-
-    if (!(strcmp(buffer, "ADD")) || !(strcmp(buffer, "SEARCH") || !(strcmp(buffer, "EXIT"))))
+    while (command != "EXIT")
     {
-        std::cout << "Wrong input" << std::endl;
+        std::cout << "Please, enter <ADD>, <SEARCH> or <EXIT>" << std::endl;
+        std::getline(std::cin, command);
+
+        if (command == "ADD")
+            phonebook.add_contact();
         return (0);
-    }
-    if (strcmp(buffer, "ADD"))
-    {
-        std::cout << "Please, enter the name of the contact: " << std::endl;
-        std::cin >> contact.name;
-
-
-
 
     }
-    return (0);
 }

@@ -1,18 +1,36 @@
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+
+
 #include <iostream>
+#include <string.h>
 
 class Contact
 {
+    private:
+        std::string first_name;
+        std::string last_name;
+        std::string nickname;
+        std::string darkest_secret;
+        std::string phone_number;
     public:
-    std::string name;
-    int phone_number;
+        void fill_contact();
 };
+
+//a saved contact cant have empty fields
 
 class PhoneBook
 {
-    public:
-    void add_contact(Contact contact);
-    
     private:
-    Contact contact[8];
-    int contact_number = 0;
+        Contact contacts[8];
+        int contact_number;
+        
+    public:
+        PhoneBook();
+        void add_contact();
+    
 };
+
+#endif
+
+
