@@ -15,6 +15,13 @@ class Contact
         std::string phone_number;
     public:
         void fill_contact();
+
+        std::string get_first_name() const { return first_name; }
+        std::string get_last_name() const { return last_name; }
+        std::string get_nickname() const { return nickname; }
+        std::string get_darkest_secret() const { return darkest_secret; }
+        std::string get_phone_number() const { return phone_number; }
+
 };
 
 //a saved contact cant have empty fields
@@ -22,13 +29,15 @@ class Contact
 class PhoneBook
 {
     private:
-        Contact contacts[8];
+        //Contact contacts[8];
         int contact_number;
         
     public:
         PhoneBook();
+        Contact contacts[8];
         void add_contact();
         int oldest_one;
+        void search();
     
 };
 

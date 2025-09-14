@@ -40,6 +40,21 @@ void PhoneBook::add_contact()
         contact_number++;
     }
 }
+/* Display  the saved contacts as a list of 4 columns
+ - each column 10 characters wide, "|" seperates them, right aligned */
+void PhoneBook::search()
+{
+    Contact c;
+    std::cout << "     Index | First name |  Last name |   Nickname" << std::endl;
+    std::cout << "       ";
+    std::cout << contact_number;
+    std::cout << " | ";
+    std::cout << c.first_name;
+
+
+
+
+}
 
 PhoneBook::PhoneBook()
 {
@@ -59,7 +74,11 @@ int main()
 
         if (command == "ADD")
             phonebook.add_contact();
-        return (0);
+        else if (command == "SEARCH")
+            phonebook.search();
 
+
+            
     }
+    return (0);
 }
