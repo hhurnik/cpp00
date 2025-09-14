@@ -28,6 +28,7 @@ class PhoneBook
     public:
         PhoneBook();
         void add_contact();
+        int oldest_one;
     
 };
 

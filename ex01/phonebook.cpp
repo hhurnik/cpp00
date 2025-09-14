@@ -23,10 +23,20 @@ void PhoneBook::add_contact()
     c.fill_contact();
     
     if (contact_number == 8)
-        contacts[0] = c;
+    {
+        //replace the oldest one
+        //it will be circular- first the first one, 
+        //then the second, ... , the last one and back to 0th
+        contacts[oldest_one] = c;
+        if (oldest_one == 7)
+            oldest_one = 0;
+        else
+            oldest_one++; //the next oldest
+    }
     else
     {
         contacts[contact_number] = c;
+        oldest_one = 0;
         contact_number++;
     }
 }
