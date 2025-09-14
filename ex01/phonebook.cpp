@@ -40,6 +40,15 @@ void PhoneBook::add_contact()
         contact_number++;
     }
 }
+//right aligned, max 10 chars
+std::string format_field(std::string field)
+{
+    if (field.length() > 10)
+        return (field.substr(0, 9) + ".");
+    else
+        return (std::string(10 - field.length(), ' ') + field);
+}
+
 /* Display  the saved contacts as a list of 4 columns
  - each column 10 characters wide, "|" seperates them, right aligned */
 void PhoneBook::search()
