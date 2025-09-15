@@ -26,10 +26,10 @@ class Contact
 
 //a saved contact cant have empty fields
 
+//i need a constructor here, cause i need contact
 class PhoneBook
 {
     private:
-        //Contact contacts[8];
         int contact_number;
         
     public:

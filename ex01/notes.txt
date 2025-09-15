@@ -1,0 +1,20 @@
+When do you need constructors and destructors in C++?
+
+--------- Constructors
+You need a constructor if you want to:
+
+1. Initialize member variables to specific values when an object is created.
+2. Run some setup logic (e.g., allocate memory, open a file, initialize counters).
+3. Provide multiple ways to create an object (via overloaded constructors).
+
+If you don’t write one, the compiler provides a default constructor that value-initializes members (for POD types) or calls their default constructors (for std::string, vectors, etc.).
+
+
+
+--------- Destructors
+You need a destructor if you:
+
+1. Allocate resources manually (with new, malloc, fopen, etc.) that must be explicitly released.
+2. Manage something like sockets, files, or locks that need proper cleanup.
+
+If you don’t write one, the compiler provides a default destructor, which just destroys each member variable in turn. For types like std::string, that’s perfectly fine, since they manage their own memory.

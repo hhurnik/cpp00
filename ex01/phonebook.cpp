@@ -76,16 +76,12 @@ void PhoneBook::search()
         number_contact++;
         i++;
     }
-
-
-
-
-
 }
 
 PhoneBook::PhoneBook()
 {
     contact_number = 0;
+    oldest_one = 0;
 }
 
 int main()
