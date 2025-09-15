@@ -38,6 +38,8 @@ class PhoneBook
         void add_contact();
         int oldest_one;
         void search();
+
+        int get_contact_number() const { return contact_number; }
     
 };
 

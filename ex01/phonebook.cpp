@@ -53,12 +53,30 @@ std::string format_field(std::string field)
  - each column 10 characters wide, "|" seperates them, right aligned */
 void PhoneBook::search()
 {
+    int i;
     Contact c;
-    std::cout << "     Index | First name |  Last name |   Nickname" << std::endl;
-    std::cout << "       ";
-    std::cout << contact_number;
-    std::cout << " | ";
-    std::cout << c.first_name;
+
+    int number_contact = 0;
+    i = 0;
+
+    std::cout << format_field("Index") << " | " << format_field("First name") << " | " << format_field("Last name") << " | " << format_field("Nickname") << std::endl;
+
+    while (i < get_contact_number())
+    {
+
+
+        std::cout << "         " << number_contact;
+        std::cout << " | ";
+        std::cout << format_field(contacts[i].get_first_name());
+        std::cout << " | ";
+        std::cout << format_field(contacts[i].get_last_name());
+        std::cout << " | ";
+        std::cout << format_field(contacts[i].get_nickname()) << std::endl;
+
+        number_contact++;
+        i++;
+    }
+
 
 
 
