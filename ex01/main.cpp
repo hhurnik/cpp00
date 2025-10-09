@@ -3,7 +3,7 @@
 int main()
 {
     PhoneBook phonebook;
-    Contact contact;
+    //Contact contact;
     std::string command;
 
     while (command != "EXIT")
