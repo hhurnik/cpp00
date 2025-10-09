@@ -1,20 +1,5 @@
-#include <stdio.h>
-#include "./phonebook.hpp"
-#include <string.h>
-
-void Contact::fill_contact()
-{
-    std::cout << "First name: " << std::endl;
-    std::getline(std::cin, first_name);
-    std::cout << "Last name: " << std::endl;
-    std::getline(std::cin, last_name);
-    std::cout << "Nickname: " << std::endl;
-    std::getline(std::cin, nickname);
-    std::cout << "Tell me your darkest secret: " << std::endl;
-    std::getline(std::cin, darkest_secret);
-    std::cout << "Phone number: " << std::endl;
-    std::getline(std::cin, phone_number);
-}
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 //takes a contact object and inserts it into the array
 void PhoneBook::add_contact()
@@ -54,6 +39,8 @@ std::string format_field(std::string field)
 void PhoneBook::search()
 {
     int i;
+    std::string input;
+    int index;
     Contact c;
 
     int number_contact = 0;
@@ -76,6 +63,33 @@ void PhoneBook::search()
         number_contact++;
         i++;
     }
+    /*Then, prompt the user again for the index of the entry to display. If the index
+    is out of range or wrong, define a relevant behavior. Otherwise, display the
+    contact information, one field per line*/
+    std::cout << "Which index would you like to display?: " << std::endl;
+    std::getline(std::cin, input);
+
+    if (input.length() != 1 || !std::isdigit(input[0]))
+    {
+        std::cout << "Invalid index!" << std::endl;
+        return;
+    }
+
+    //convert to int
+    index = input[0] - '0';
+
+    if (index < 0 || index >= get_contact_number())
+    {
+        std::cout << "Index smaller than 0 or exceeds the last existing contact" << std::endl;
+        return;
+    }
+
+    std::cout << "First name: " << contacts[index].get_first_name() << std::endl;
+    std::cout << "Last name: " << contacts[index].get_last_name() << std::endl;
+    std::cout << "Nickname: " << contacts[index].get_nickname() << std::endl;
+    std::cout << "Phone number: " << contacts[index].get_phone_number() << std::endl;
+    std::cout << "Darkest secret: " << contacts[index].get_darkest_secret() << std::endl;
+
 }
 
 PhoneBook::PhoneBook()
@@ -84,24 +98,3 @@ PhoneBook::PhoneBook()
     oldest_one = 0;
 }
 
-int main()
-{
-    PhoneBook phonebook;
-    Contact contact;
-    std::string command;
-
-    while (command != "EXIT")
-    {
-        std::cout << "Please, enter <ADD>, <SEARCH> or <EXIT>" << std::endl;
-        std::getline(std::cin, command);
-
-        if (command == "ADD")
-            phonebook.add_contact();
-        else if (command == "SEARCH")
-            phonebook.search();
-
-
-            
-    }
-    return (0);
-}
