@@ -1,4 +1,107 @@
-#include "PhoneBook.hpp"
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
+
+#include <iostream>
+#include <string>
+
+class Contact
+{
+    private:
+        std::string first_name;
+        std::string last_name;
+        std::string nickname;
+        std::string darkest_secret;
+        std::string phone_number;
+    public:
+        void fill_contact();
+
+        std::string get_first_name() const { return first_name; }
+        std::string get_last_name() const { return last_name; }
+        std::string get_nickname() const { return nickname; }
+        std::string get_darkest_secret() const { return darkest_secret; }
+        std::string get_phone_number() const { return phone_number; }
+
+};
+
+#endif
+
+
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+
+
+#include <iostream>
+#include <string>
+#include "Contact.hpp"
+
+class PhoneBook
+{
+    private:
+        int contact_number;
+        Contact contacts[8];
+        int oldest_contact;
+        
+    public:
+        PhoneBook();
+        void add_contact();
+        void search();
+
+        int get_contact_number() const { return contact_number; }
+    
+};
+
+#endif
+
+
+#include "Contact.hpp"
+
+void Contact::fill_contact()
+{
+    //first Name
+    while (first_name.empty())
+    {
+        std::cout << "First name: ";
+        std::getline(std::cin, first_name);
+        if (first_name.empty())
+            std::cout << "First name cannot be empty. Please enter it again." << std::endl;
+    }
+
+    //last Name
+    while (last_name.empty())
+    {
+        std::cout << "Last name: ";
+        std::getline(std::cin, last_name);
+        if (last_name.empty())
+            std::cout << "Last name cannot be empty. Please enter it again." << std::endl;
+    }
+
+    //nickname
+    while (nickname.empty())
+    {
+        std::cout << "Nickname: ";
+        std::getline(std::cin, nickname);
+        if (nickname.empty())
+            std::cout << "Nickname cannot be empty. Please enter it again." << std::endl;
+    }
+
+    //phone Number
+    while (phone_number.empty())
+    {
+        std::cout << "Phone number: ";
+        std::getline(std::cin, phone_number);
+        if (phone_number.empty())
+            std::cout << "Phone number cannot be empty. Please enter it again." << std::endl;
+    }
+
+    //darkest Secret
+    while (darkest_secret.empty())
+    {
+        std::cout << "Darkest secret: ";
+        std::getline(std::cin, darkest_secret);
+        if (darkest_secret.empty())
+            std::cout << "Darkest secret cannot be empty. Please enter it again." << std::endl;
+    }
+}#include "PhoneBook.hpp"
 #include "Contact.hpp"
 
 //moje
@@ -109,3 +212,23 @@ PhoneBook::PhoneBook()
     oldest_contact = 0;
 }
 
+#include "PhoneBook.hpp"
+
+int main()
+{
+    PhoneBook phonebook;
+    //Contact contact;
+    std::string command;
+
+    while (command != "EXIT")
+    {
+        std::cout << "Please, enter <ADD>, <SEARCH> or <EXIT>" << std::endl;
+        std::getline(std::cin, command);
+
+        if (command == "ADD")
+            phonebook.add_contact();
+        else if (command == "SEARCH")
+            phonebook.search(); 
+    }
+    return (0);
+}

@@ -4,18 +4,19 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
 #include "Contact.hpp"
 
 class PhoneBook
 {
     private:
         int contact_number;
+        Contact contacts[8];
+        int oldest_contact;
         
     public:
         PhoneBook();
-        Contact contacts[8];
         void add_contact();
-        int oldest_one;
         void search();
 
         int get_contact_number() const { return contact_number; }

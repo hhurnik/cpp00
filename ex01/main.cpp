@@ -14,10 +14,7 @@ int main()
         if (command == "ADD")
             phonebook.add_contact();
         else if (command == "SEARCH")
-            phonebook.search();
-
-
-            
+            phonebook.search(); 
     }
     return (0);
 }
